@@ -26,6 +26,16 @@ To be able to reproduce the results by running the 'analysis.ipynb' file, it's r
 │   └── ratings.csv
 
 
+projet/
+├── README.md
+├── src/
+│   ├── main.py
+│   └── utils.py
+├── data/
+│   ├── dataset.csv
+│   └── config.json
+└── requirements.txt
+
 	
 
 
