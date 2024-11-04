@@ -12,18 +12,19 @@
 
 To be able to reproduce the results by running the 'analysis.ipynb' file, it's requiered to place the data files in the 'data' folder as follow (these files can't be added to github because of their sizes).
 
-data
-|-- BeerAdvocate
-|   |-- beers.csv
-|   |-- breweries.csv
-|   |-- users.csv
-|   |-- ratings.csv
-|      
-|-- RateBeer
-|   |-- beers.csv
-|   |-- breweries.csv
-|   |-- users.csv
-|   |-- ratings.csv
+/data
+├── BeerAdvocate
+│   ├── beers.csv
+│   ├── breweries.csv
+│	├── users.csv
+│   └── ratings.csv
+│
+├── RateBeer
+│   ├── beers.csv
+│   ├── breweries.csv
+│	├── users.csv
+│   └── ratings.csv
+
 
 	
 
