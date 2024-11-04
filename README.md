@@ -17,13 +17,13 @@ To be able to reproduce the results by running the 'analysis.ipynb' file, it's r
 ├── BeerAdvocate
 │   ├── beers.csv
 │   ├── breweries.csv
-│	├── users.csv
+│   ├── users.csv
 │   └── ratings.csv
 │
 ├── RateBeer
 │   ├── beers.csv
 │   ├── breweries.csv
-│	├── users.csv
+│   ├── users.csv
 │   └── ratings.csv
 ```
 
