@@ -31,7 +31,7 @@ data/
 	└── ratings.csv
 ```
 
-All files can be found in the original datasets, except for the ```ratings.csv``` files that can be downloaded here:
+All files can be found in the GitHub Repo or in the original datasets, except for the ```ratings.csv``` files that are too heavy to be placed on GitHub. They can be downloaded here:
 - [BeerAdvocate](https://coursedingler.ch/data/BA/ratings.csv)
 - [RateBeer](https://coursedingler.ch/data/RB/ratings.csv)
 
