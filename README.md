@@ -14,6 +14,7 @@
 To be able to reproduce the results by running the 'analysis.ipynb' file, the following directory structure is required:
 
 ```
+README
 analysis.ipynb
 helpers.py
 data/
@@ -28,7 +29,6 @@ data/
 	├── breweries.csv
 	├── users.csv
 	└── ratings.csv
-README
 ```
 
 All files can be found in the original datasets, except for the ```ratings.csv``` files that can be downloaded here:
