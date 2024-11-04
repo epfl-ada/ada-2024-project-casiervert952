@@ -6,28 +6,40 @@
 
 - Pandas
 - Numpy
+- matplotlib
 - ...
 
 ### Data
 
-To be able to reproduce the results by running the 'analysis.ipynb' file, it's requiered to place the two ```ratings.txt``` file in the 'data' folder as follow (these two files can't be added to github because of their sizes).
+To be able to reproduce the results by running the 'analysis.ipynb' file, the following directory structure is required:
 
 ```
-/data
+analysis.ipynb
+helpers.py
+data/
 ├── BeerAdvocate
 │   ├── beers.csv
 │   ├── breweries.csv
 │   ├── users.csv
-│   └── ratings.txt
+│   └── ratings.csv
 │
 └── RateBeer
-    ├── beers.csv
-    ├── breweries.csv
-    ├── users.csv
-    └── ratings.txt
+	├── beers.csv
+	├── breweries.csv
+	├── users.csv
+	└── ratings.csv
+README
 ```
 
+All files can be found in the original datasets, except for the ```ratings.csv``` files that can be downloaded here:
+- [BeerAdvocate](https://coursedingler.ch/data/BA/ratings.csv)
+- [RateBeer](https://coursedingler.ch/data/RB/ratings.csv)
+
+> *The generation of ```ratings.csv``` files for both datasets from ```.txt``` files is possible in ```analysis.ipynb``` but takes ~35 minutes on a high-performance computer.*
 	
+
+
+
 
 
 README.md should contain:

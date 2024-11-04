@@ -1,0 +1,9 @@
+
+data/BeerAdvocate/ratings.csv
+data/BeerAdvocate/ratings.txt
+data/RateBeer/ratings.csv
+data/RateBeer/ratings.txt
+P2_Kamil.ipynb
+.ipynb_checkpoints/analysis-checkpoint.ipynb
+.ipynb_checkpoints/P2_Kamil-checkpoint.ipynb
+__pycache__/helpers.cpython-311.pyc
