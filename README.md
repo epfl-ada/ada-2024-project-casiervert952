@@ -25,10 +25,10 @@ data/
 │   └── ratings.csv
 │
 └── RateBeer
-	├── beers.csv
-	├── breweries.csv
-	├── users.csv
-	└── ratings.csv
+    ├── beers.csv
+    ├── breweries.csv
+    ├── users.csv
+    └── ratings.csv
 ```
 
 All files can be found in the GitHub Repo or in the original datasets, except for the ```ratings.csv``` files that are too heavy to be placed on GitHub. They can be downloaded here:
