@@ -18,13 +18,13 @@ README
 analysis.ipynb
 helpers.py
 data/
-├── BeerAdvocate
+├── BeerAdvocate/
 │   ├── beers.csv
 │   ├── breweries.csv
 │   ├── users.csv
 │   └── ratings.csv
 │
-└── RateBeer
+└── RateBeer/
     ├── beers.csv
     ├── breweries.csv
     ├── users.csv
