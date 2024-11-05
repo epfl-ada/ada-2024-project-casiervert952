@@ -1,7 +1,5 @@
 import csv
 import os
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 #########################################
 ### Some helper functions for project ###
@@ -68,49 +66,7 @@ def txt_to_csv(file_txt, file_csv, dataset):
 
         print("Data have been placed in : " + file_csv)
 
-"""
-Plot the country representation
 
-Parameters:
-    BA (pandas.Series): The country data for BA.
-    RB (pandas.Series): The country data for RB.
-    scale (String): Specify which scale to use for the plot (log or linear)
-Returns:
-    None, it just show the plots
-"""
-def ploting_country_representation(BA, RB, scale):
-
-    sns.set_theme(style="whitegrid")
-    figure, axes = plt.subplots(nrows=1, ncols=2, figsize=(16, 6), sharey=True)
-
-    # Bar plot for BA
-    BA.plot(kind='bar', ax=axes[0], color=sns.color_palette("Blues", n_colors=len(BA))[::-1])
-    axes[0].set_xlabel('Countries', fontsize=12)
-    axes[0].set_ylabel('Number of Ratings', fontsize=12)
-    axes[0].set_title('Top 25 Countries by Ratings (BeerAdvocate)', fontsize=14)
-    axes[0].set_yscale(scale)
-
-    # Add text that define the value
-    for index, value in enumerate(BA):
-        axes[0].text(index, value, f'{value}', ha='center', va='bottom', fontsize=8)
-
-    # Bar plot for RB
-    RB.plot(kind='bar', ax=axes[1], color=sns.color_palette("Reds", n_colors=len(RB))[::-1])
-    axes[1].set_xlabel('Countries', fontsize=12)
-    axes[1].set_title('Top 25 Countries by Ratings (RateBeer)', fontsize=14)
-    axes[1].set_yscale(scale)
-
-    # Add text that define the value
-    for index, value in enumerate(RB):
-        axes[1].text(index, value, f'{value}', ha='center', va='bottom', fontsize=8)
-
-    # Placing the labels
-    for ax in axes:
-        ax.tick_params(axis='x', rotation=90)
-        ax.grid(axis='y', linestyle='--', alpha=0.7)
-
-    plt.tight_layout()
-    plt.show()
 
 ##########################################
 ### Some helper dictionary for project ###
