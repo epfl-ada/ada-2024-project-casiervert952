@@ -4,4 +4,4 @@ data/BeerAdvocate/ratings.txt
 data/RateBeer/ratings.csv
 data/RateBeer/ratings.txt
 .ipynb_checkpoints/analysis-checkpoint.ipynb
-__pycache__/helpers.cpython-311.pyc
+__pycache__/
