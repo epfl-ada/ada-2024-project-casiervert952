@@ -6,7 +6,8 @@
 
 - Pandas
 - Numpy
-- matplotlib
+- Matplotlib
+- Seaborn
 - ...
 
 ### Data
