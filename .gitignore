@@ -5,5 +5,6 @@ data/RateBeer/ratings.csv
 data/RateBeer/ratings.txt
 .ipynb_checkpoints/analysis-checkpoint.ipynb
 __pycache__/
+ADA_save/
 data/RateBeer/RB_cleaned.csv
 data/BeerAdvocate/BA_cleaned.csv
