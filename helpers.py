@@ -1,7 +1,10 @@
 import csv
 import os
-import matplotlib.pyplot as plt
 import seaborn as sns
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
+import numpy as np
+import pandas as pd
 
 #########################################
 ### Some helper functions for project ###
@@ -112,6 +115,74 @@ def ploting_country_representation(BA, RB, scale):
     plt.tight_layout()
     plt.show()
 
+
+def ploting_user_ratings_distribution(BA_ratings_bins, RB_ratings_bins):
+	# Créer la figure
+	plt.figure(figsize=(15, 6))
+
+	# Tracer le graphique pour BA
+	BA_ratings_bins.plot(kind='bar', color='skyblue', edgecolor='black', alpha=1, label="BA Users", position=1, width=0.4)
+
+	# Tracer le graphique pour RB
+	RB_ratings_bins.plot(kind='bar', color='salmon', edgecolor='black', alpha=1, label="RB Users", position=0, width=0.4)
+
+	# Ajouter un titre et des labels
+	plt.title("Distribution of users by number of ratings", fontsize=14)
+	plt.xlabel("# Ratings", fontsize=12)
+	plt.ylabel("# Users", fontsize=12)
+	plt.yscale("log")
+	plt.yticks([1, 10, 100, 1000, 10000, 100000], ['1', '10', '100', '1000', '10000', '100000'])  # Adjust y-ticks
+	plt.gca().yaxis.set_major_formatter(ticker.FuncFormatter(lambda x, pos: f'{int(x):,}'))  # Format y labels
+
+	# Ajouter la légende
+	plt.legend()
+
+	# Rotation des ticks de l'axe des X pour meilleure lisibilité
+	plt.xticks(rotation=90)
+	plt.xticks(fontsize=10)
+	plt.yticks(fontsize=11)
+
+	# Ajuster la disposition pour éviter le chevauchement
+	plt.tight_layout()
+	plt.xlim(-0.7)
+	# Afficher le graphique
+	plt.show()
+
+
+def ploting_ratings_by_month(BA_ratings_by_month, RB_ratings_by_month, scale):
+
+	# Créer la figure avec 2 sous-graphiques sur la même ligne
+	fig, axes = plt.subplots(1, 2, figsize=(15, 7))  # 1 ligne, 2 colonnes
+
+	# Premier graphique
+	axes[0].plot(BA_ratings_by_month['rating_date'], BA_ratings_by_month['#ratings'], marker='.', linestyle='None', color='blue', markerfacecolor='blue')
+	axes[0].set_title('Nombre de ratings par mois', fontsize=14)
+	axes[0].set_xlabel('Année', fontsize=12)
+	axes[0].set_ylabel('Nombre de ratings', fontsize=12)
+	axes[0].set_yscale(scale)
+	axes[0].set_xlim(pd.to_datetime('01-1998'), pd.to_datetime('12-2017'))
+	axes[0].set_xticks(pd.date_range('01-1998', '12-2017', freq='AS'))
+	axes[0].set_xticklabels([str(date.year) for date in pd.date_range('01-1998', '12-2017', freq='AS')], rotation=45)
+	axes[0].grid(True, axis='x', linestyle='--', linewidth=0.5)
+	axes[0].grid(True, axis='y', linestyle='--', linewidth=0.5)
+
+	# Deuxième graphique (même graphique)
+	axes[1].plot(RB_ratings_by_month['rating_date'], RB_ratings_by_month['#ratings'], marker='.', linestyle='None', color='blue', markerfacecolor='blue')
+	axes[1].set_title('Nombre de ratings par mois', fontsize=14)
+	axes[1].set_xlabel('Année', fontsize=12)
+	axes[1].set_ylabel('Nombre de ratings', fontsize=12)
+	axes[1].set_yscale(scale)
+	axes[1].set_xlim(pd.to_datetime('01-1998'), pd.to_datetime('12-2017'))
+	axes[1].set_xticks(pd.date_range('01-1998', '12-2017', freq='AS'))
+	axes[1].set_xticklabels([str(date.year) for date in pd.date_range('01-1998', '12-2017', freq='AS')], rotation=45)
+	axes[1].grid(True, axis='x', linestyle='--', linewidth=0.5)
+	axes[1].grid(True, axis='y', linestyle='--', linewidth=0.5)
+
+	# Ajuster la disposition pour éviter le chevauchement
+	plt.tight_layout()
+
+	# Afficher les graphiques
+	plt.show()
 ##########################################
 ### Some helper dictionary for project ###
 ##########################################
