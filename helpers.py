@@ -115,46 +115,61 @@ def ploting_country_representation(BA, RB, scale):
     plt.tight_layout()
     plt.show()
 
+"""
+Plot the #ratings by users
 
+Parameters:
+    BA_ratings_bins (pandas.Series): The #ratings by users data for BA.
+    RB_ratings_bins (pandas.Series): The #ratings by users data for RB.
+Returns:
+    None, it just show the plots
+"""
 def ploting_user_ratings_distribution(BA_ratings_bins, RB_ratings_bins):
-	# Créer la figure
+	
 	plt.figure(figsize=(15, 6))
 
-	# Tracer le graphique pour BA
+	# Add the data for BA in plot
 	BA_ratings_bins.plot(kind='bar', color='skyblue', edgecolor='black', alpha=1, label="BA Users", position=1, width=0.4)
 
-	# Tracer le graphique pour RB
+	# Add the data for RB in plot
 	RB_ratings_bins.plot(kind='bar', color='salmon', edgecolor='black', alpha=1, label="RB Users", position=0, width=0.4)
 
-	# Ajouter un titre et des labels
+	# Define labels, legend and titles
 	plt.title("Distribution of users by number of ratings", fontsize=14)
 	plt.xlabel("# Ratings", fontsize=12)
 	plt.ylabel("# Users", fontsize=12)
 	plt.yscale("log")
 	plt.yticks([1, 10, 100, 1000, 10000, 100000], ['1', '10', '100', '1000', '10000', '100000'])  # Adjust y-ticks
 	plt.gca().yaxis.set_major_formatter(ticker.FuncFormatter(lambda x, pos: f'{int(x):,}'))  # Format y labels
-
-	# Ajouter la légende
 	plt.legend()
 
-	# Rotation des ticks de l'axe des X pour meilleure lisibilité
+	# Rotate and define size for ticks
 	plt.xticks(rotation=90)
 	plt.xticks(fontsize=10)
 	plt.yticks(fontsize=11)
 
-	# Ajuster la disposition pour éviter le chevauchement
+	# Little change on placement
 	plt.tight_layout()
 	plt.xlim(-0.7)
-	# Afficher le graphique
+	
+	# Show the plot
 	plt.show()
 
+"""
+Plot the #ratings by months
 
+Parameters:
+    BA_ratings_by_month (pandas.Series): The #ratings by months data for BA.
+    RB_ratings_by_month (pandas.Series): The #ratings by months data for RB.
+    scale (String): Specify which scale to use for the plot (log or linear)
+Returns:
+    None, it just show the plots
+"""
 def ploting_ratings_by_month(BA_ratings_by_month, RB_ratings_by_month, scale):
 
-	# Créer la figure avec 2 sous-graphiques sur la même ligne
-	fig, axes = plt.subplots(1, 2, figsize=(15, 7))  # 1 ligne, 2 colonnes
+	fig, axes = plt.subplots(1, 2, figsize=(15, 7))
 
-	# Premier graphique
+	# Define first graph (BA) parameters
 	axes[0].plot(BA_ratings_by_month['rating_date'], BA_ratings_by_month['#ratings'], marker='.', linestyle='None', color='blue', markerfacecolor='blue')
 	axes[0].set_title('Nombre de ratings par mois', fontsize=14)
 	axes[0].set_xlabel('Année', fontsize=12)
@@ -166,7 +181,7 @@ def ploting_ratings_by_month(BA_ratings_by_month, RB_ratings_by_month, scale):
 	axes[0].grid(True, axis='x', linestyle='--', linewidth=0.5)
 	axes[0].grid(True, axis='y', linestyle='--', linewidth=0.5)
 
-	# Deuxième graphique (même graphique)
+	# Define second graph (RB) parameters
 	axes[1].plot(RB_ratings_by_month['rating_date'], RB_ratings_by_month['#ratings'], marker='.', linestyle='None', color='blue', markerfacecolor='blue')
 	axes[1].set_title('Nombre de ratings par mois', fontsize=14)
 	axes[1].set_xlabel('Année', fontsize=12)
@@ -178,11 +193,13 @@ def ploting_ratings_by_month(BA_ratings_by_month, RB_ratings_by_month, scale):
 	axes[1].grid(True, axis='x', linestyle='--', linewidth=0.5)
 	axes[1].grid(True, axis='y', linestyle='--', linewidth=0.5)
 
-	# Ajuster la disposition pour éviter le chevauchement
+	# Little change on placement
 	plt.tight_layout()
 
-	# Afficher les graphiques
+	# Show the plots
 	plt.show()
+
+
 ##########################################
 ### Some helper dictionary for project ###
 ##########################################
