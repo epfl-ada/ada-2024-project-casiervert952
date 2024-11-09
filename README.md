@@ -12,7 +12,7 @@
 
 ### 0.2 Data
 
-To obtain the cleaned data requiered to run the ```analysis.ipynb``` file, it is needed to execute once the ```data_preprocessing.ipynb```. The latter require to have the two  ```ratings.txt``` files of the original datasets transformed in ```CSV```, as illustrated by the following directory structure :
+To obtain the cleaned which are data requiered to run the ```analysis.ipynb``` file, it is needed to execute once the ```data_preprocessing.ipynb```. The latter require to have the two  ```ratings.txt``` files of the original datasets transformed in ```CSV```, as illustrated by the following directory structure :
 
 ```
 README
