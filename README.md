@@ -12,11 +12,12 @@
 
 ### 0.2 Data
 
-To be able to reproduce the results by running the 'analysis.ipynb' file, the following directory structure is required:
+To obtain the cleaned data requiered to run the ```analysis.ipynb``` file, it is needed to execute once the ```data_preprocessing.ipynb```. The latter require to have the two  ```ratings.txt``` files of the original datasets transformed in ```CSV```, as illustrated by the following directory structure :
 
 ```
 README
 analysis.ipynb
+data_preprocessing.ipynb
 helpers.py
 data/
 ├── BeerAdvocate/
@@ -36,8 +37,8 @@ All files can be found in the GitHub Repo or in the original datasets, except fo
 - [BeerAdvocate](https://coursedingler.ch/data/BA/ratings.csv)
 - [RateBeer](https://coursedingler.ch/data/RB/ratings.csv)
 
-> *The generation of ```ratings.csv``` files for both datasets from ```.txt``` files is possible in ```analysis.ipynb``` but takes ~35 minutes on a high-performance computer.*
-	
+> *The generation of ```ratings.csv``` files for both datasets from ```.txt``` files is possible in ```data_preprocessing.ipynb``` but takes ~35 minutes on a high-performance computer.*
+
 ## 1. The project
 
 ### 1.1 Title
