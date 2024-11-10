@@ -171,25 +171,25 @@ def ploting_ratings_by_month(BA_ratings_by_month, RB_ratings_by_month, scale):
 
 	# define first graph (BA) parameters
 	axes[0].plot(BA_ratings_by_month['rating_date'], BA_ratings_by_month['#ratings'], marker='.', linestyle='None', color='blue', markerfacecolor='blue')
-	axes[0].set_title('Number of ratings each month', fontsize=14)
+	axes[0].set_title('Number of ratings each month for BeerAdvocate (log scale)', fontsize=14)
 	axes[0].set_xlabel('Year', fontsize=12)
 	axes[0].set_ylabel('# ratings', fontsize=12)
 	axes[0].set_yscale(scale)
 	axes[0].set_xlim(pd.to_datetime('01-1998'), pd.to_datetime('12-2017'))
-	axes[0].set_xticks(pd.date_range('01-1998', '12-2017', freq='AS'))
-	axes[0].set_xticklabels([str(date.year) for date in pd.date_range('01-1998', '12-2017', freq='AS')], rotation=45)
+	axes[0].set_xticks(pd.date_range('01-1998', '12-2017', freq='YS'))
+	axes[0].set_xticklabels([str(date.year) for date in pd.date_range('01-1998', '12-2017', freq='YS')], rotation=45)
 	axes[0].grid(True, axis='x', linestyle='--', linewidth=0.5)
 	axes[0].grid(True, axis='y', linestyle='--', linewidth=0.5)
 
 	# define second graph (RB) parameters
 	axes[1].plot(RB_ratings_by_month['rating_date'], RB_ratings_by_month['#ratings'], marker='.', linestyle='None', color='blue', markerfacecolor='blue')
-	axes[1].set_title('Number of ratings each month', fontsize=14)
+	axes[1].set_title('Number of ratings each month for RateBeer (log scale)', fontsize=14)
 	axes[1].set_xlabel('Year', fontsize=12)
-	axes[1].set_ylabel('Year', fontsize=12)
+	axes[1].set_ylabel('# ratings', fontsize=12)
 	axes[1].set_yscale(scale)
 	axes[1].set_xlim(pd.to_datetime('01-1998'), pd.to_datetime('12-2017'))
-	axes[1].set_xticks(pd.date_range('01-1998', '12-2017', freq='AS'))
-	axes[1].set_xticklabels([str(date.year) for date in pd.date_range('01-1998', '12-2017', freq='AS')], rotation=45)
+	axes[1].set_xticks(pd.date_range('01-1998', '12-2017', freq='YS'))
+	axes[1].set_xticklabels([str(date.year) for date in pd.date_range('01-1998', '12-2017', freq='YS')], rotation=45)
 	axes[1].grid(True, axis='x', linestyle='--', linewidth=0.5)
 	axes[1].grid(True, axis='y', linestyle='--', linewidth=0.5)
 
