@@ -1,4 +1,4 @@
-# Project 1 - CasierVert952
+# README - Milestone P2 - CasierVert952
 
 ## 0. Initial configuration
 
@@ -74,7 +74,7 @@ External dataset about constituency (state-level) returns for elections to the U
 
 - [Harvard Dataverse](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/42MVDX)
 
-This dataset... 🔴🔴ALBERTO🔴🔴
+This dataset... 🔴🔴ALBERTO🔴🔴 --> Proposed additional datasets (if any): List the additional dataset(s) you want to use (if any), and some ideas on how you expect to get, manage, process, and enrich it/them. Show us that you’ve read the docs and some examples, and that you have a clear idea on what to expect. Discuss data size and format if relevant. It is your responsibility to check that what you propose is feasible.
 
 ### 1.5 Methods and timeline
 
@@ -137,7 +137,7 @@ This dataset... 🔴🔴ALBERTO🔴🔴
 *Step 4 : Q4 (Alberto)*
 
 Expliquer ce qu’on pourrait plot etc… en vrai pas obligé de tout mettre mais c’est cool si on met nos idées déjà.
-PRECISER  SUBJECT TO CHANGES
+PRECISER que c'est SUBJECT TO CHANGES
 
 
 #### Part 5 : Analyse the influence of politics on beer dynamics
@@ -154,18 +154,27 @@ Use final results for an analysis
 **This part is still to be detailed.**
 
 #### Proposed timeline :
-15.11.2024 : Step 1 to 5
+15.11.2024 : Part 1 and 2
+
 29.11.2024 : Homework 2
+
 08.12.2024 : Part 4 (Step 1 to 4)
+
 12.12.2024 : Part 5 (Step 1 & 2)
+
 18.12.2024 : Part 6 (Step 1 & 2)
+
 20.12.2024 : Deadline Milestone 3
 
 #### Organization within the team
 Alberto : Step x.1 & x.2
+
 Daniel : Step 
+
 Fabian : Step 
+
 Samuel : Step 
+
 Vincent : Step 
 
 
