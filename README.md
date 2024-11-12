@@ -49,7 +49,7 @@ All files can be found in the GitHub Repo or in the original datasets, except fo
 Red, Blue, and Brew: How Politics Pours into Beer Preferences in the US
 
 ### 1.2 Description
-In modern times, it might be very easy to fall in the trap of certain stereotypes. Indeed, we know that people often take their personal beliefs and values, often linked to their political orientation, with them wherever they go. Thus, one could think for example that a Republican would prefer a strong, dark beer from ‘back home’, while a Democrat might prefer a lighter, more complex-tasting beer and that they wouldn’t care where it comes from. Our aim here will be to see whether these stereotypes are well-founded and to potentially debunk them.
+In these modern times, it might be very easy to fall in the trap of certain stereotypes. Indeed, we know that people often take their personal beliefs and values, often linked to their political orientation, with them wherever they go. Thus, one could think for example that a Republican would prefer a strong, dark beer from ‘back home’, while a Democrat might prefer a lighter, more complex-tasting beer and that they wouldn’t care where it comes from. Our aim here will be to see whether these stereotypes are well-founded and to potentially debunk them.
 
 To do this, we will compare two large datasets of beer reviews from two major beer review sites with the voting results for each state in the US presidential elections, from 2000 to 2020. By examining the data, our aim is to understand whether political trends can have a subtle impact on the way beer lovers choose and criticise their favourite beverages.
 
