@@ -74,7 +74,9 @@ External dataset about constituency (state-level) returns for elections to the U
 
 - [Harvard Dataverse](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/42MVDX)
 
-This dataset... 🔴🔴ALBERTO🔴🔴 --> Proposed additional datasets (if any): List the additional dataset(s) you want to use (if any), and some ideas on how you expect to get, manage, process, and enrich it/them. Show us that you’ve read the docs and some examples, and that you have a clear idea on what to expect. Discuss data size and format if relevant. It is your responsibility to check that what you propose is feasible.
+This dataset contains the statistics of the US presidential elections, published by the Clerk of the United States House of Representatives. Its data is organised to contain, among other: The year of the election, the state, the candidate's names, the party names detailed (exact party name) and simplified (DEMOCRAT, REPUBLICAN, LIBERTARIAN, or OTHER). In addition, for each candidate and state, the votes for the candidate are provided, along to the total cast votes of each state. This dataset's source is robust and reliable and the size of the dataset is small (50 states, 2-4 candidates by state, over 11 elections).
+
+The data will first be filtered to only include election year's that match our beer review dataset, and the results expanded to reflect the state percentage by party. 
 
 ### 1.5 Methods and timeline
 
@@ -130,11 +132,11 @@ This dataset... 🔴🔴ALBERTO🔴🔴 --> Proposed additional datasets (if any
     
 
 
-*Step 3 : Q3 (Alberto)*
+*Step 3 : Q3 - In order to start answering this question, it will be necessary to tokenize the reviews, and discard tokens related to common works. In addition, the tokenized treated review will be grouped by state, normalized (to account any differnce in review Numbers by state) and displayed on an histogram, focusing first on the top 5 most democrat-tendent states and the top 5 most republican states. Depending on the result, some additional dive into the data (e.g by slicing into elections periods) will be required and the results compared with the other states. That plan is subject to change, depending on the results of the first step of analysis, if any unexpected result appear.
     
 
 
-*Step 4 : Q4 (Alberto)*
+*Step 4 : Q4 In order to answer this question, we need to evaluate for each state the results of the smallest parties, from the election results dataset. Then, for different types of beers, we will look for potential correlation with these. Map libraries for python (e.g folium) can be used for better illustration and analysis of the results.
 
 Expliquer ce qu’on pourrait plot etc… en vrai pas obligé de tout mettre mais c’est cool si on met nos idées déjà.
 PRECISER que c'est SUBJECT TO CHANGES
