@@ -54,9 +54,11 @@ Parameters:
 Returns:
     The top n of each democrate and republican states.
 """
-def top_n_rep_dem(n):
-    top5_republican = []
-    top5_democrat = []
+def top_n_rep_dem(n, dem_year_, dem_year_score_df, rep_year_, rep_year_score_df):
+
+	# Define the n rep and dem lists
+    top_n_republican = []
+    top_n_democrat = []
     dem_y_ = dem_year_.reset_index()
     rep_y_ = rep_year_.reset_index()
 
@@ -71,11 +73,11 @@ def top_n_rep_dem(n):
     for st_po in dem_year['state_po'].values:
 
         state = dem_y_[dem_y_['state_po'] == st_po]['state']
-        top5_democrat.append(state.values[0].title())
+        top_n_democrat.append(state.values[0].title())
         
     for st_po in rep_year['state_po']:
 
         state = rep_y_[rep_y_['state_po'] == st_po]['state']
-        top5_republican.append(state.values[0].title())
+        top_n_republican.append(state.values[0].title())
     
-    return top5_democrat, top5_republican
+    return top_n_democrat, top_n_republican
