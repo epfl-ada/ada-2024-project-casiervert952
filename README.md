@@ -40,15 +40,15 @@ The data will first be filtered to only include election year's that match our b
 #### Part 1 : Make one with the Beer data (FABIAN & VINCENT)
 *Step 1: Preparing the data*
 
-    Some datasets were in txt files. We created a function to put it in a CSV format.
+    The available data were in different forms. The datasets on beer, brewery and users were in CSV, while ratings were in a multiple-lines TXT format. So we change them to regular CSV format.
 
-*Step 2: Building the the big and cleaned dataset*
+*Step 2: Building the the full and cleaned dataset*
 
-    For easier work with data later on, we did big merge of all datasets into one big for each website. Then, we saved both into csv files called BA_cleaned.csv and RB_cleaned.csv.
+    For easier work with data later on, we did merge of all datasets into one Dataframe for each website. Then, we saved both into new CSV files called BA_cleaned.csv and RB_cleaned.csv.
 
 *Step 3 : Visualize and examining the data*
 
-    To be able to perform proper analysis and additionnal cleanups, we looked at the data from various angles.
+    To be able to perform proper analysis and additionnal cleanups, we looked at the data from various angles, like the country representation, the distribution over time or the distribution over users.
 
 *Step 4: Exploring Each Dataset*
 
