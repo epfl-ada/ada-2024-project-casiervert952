@@ -64,7 +64,7 @@ Additionnal information was added from the already present data and dataframes w
 
 See which states are more Democratic and which ones are more Republican.
 
-#### Part 3 : First look into the questions / Observe initial trends (DANIEL & SAMUEL)
+#### Part 3 : First look into the questions / Observe initial trends
 *Step 1 : Local vs National vs Foreign consumption*
 
 Compare consumption type and political orientation of top 10 (Dem/Rep) states.
