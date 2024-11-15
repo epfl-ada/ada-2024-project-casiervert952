@@ -37,7 +37,7 @@ The data will first be filtered to only include election year's that match our b
 
 ### 1.5 Methods and timeline
 
-#### Part 1 : Make one with the Beer data (FABIAN & VINCENT)
+#### Part 1 : Make one with the Beer data
 *Step 1: Preparing the data*
 
     The available data were in different forms. The datasets on beer, brewery and users were in CSV, while ratings were in a multiple-lines TXT format. So we change them to regular CSV format.
@@ -54,45 +54,62 @@ The data will first be filtered to only include election year's that match our b
 
     After examination, we removed unwanted columns that won’t be used.
 
-#### Part 2 : Make one with the external Politics dataset (ALBERTO)
+
+#### Part 2 : Make one with the external Politics dataset
 *Step 1 : Prepare data*
 
-    Some addition of columns but the data was already good
+    Additionnal information was added from the already present data and dataframes were created.
 
 *Step 2 : Visualize this external dataset*
 
-    See how it is presented…
-
-*Step 3 : Create dataframes*
-
-    Created two dataframes usable for later.
+    See which states are more Democratic and which ones are more Republican.
 
 #### Part 3 : First look into the questions / Observe initial trends (DANIEL & SAMUEL)
-*Step 1 : Local vs National vs Foreign consumption (DANIEL)*
+*Step 1 : Local vs National vs Foreign consumption*
 
-    Compare consumption type and political orientation of top 5 (Dem/Rep) for simplification
+    Compare consumption type and political orientation of top 10 (Dem/Rep) states.
 
 *Step 2 : Beer style vs Politics*
+    
     The goal here was to enhance a trend in the beer styles depending on the political side of the states. The first result we had was a table showing the top 5 beer style by state. This table shows interesting result, like a strong attract to the beer style "Gueuze" in the democrat states, while the republican ones prefer more "Quadrupel" and "American Double/Imperial Stout" styles. We plotted the results of this table too, using a weighted count to add more weight to a top1 beer than to a top5 beer. Then, we plotted these results in a bar plot with the beer styles and their mean rating for republican states and for democrat states. The beer styles shown are the top 5 beer styles for each state. Because we don't see a clear difference between the democrat and republican states, we conclude that this plot hides the previous found trend because it doesn't distinguish the 1st from the 5th best beer style. The second plot shows the popularity i.e number of reviews, versus the beer styles and points out that the popularity in beer styles doesn't change that much across the country. The only visible difference between republican and democrat states is for the "American Double/Imperial IPA".
     
 
 *Step 3 : ABV vs Politics*
+    
     After having analyzed the favorite beer styles for different states, we wanted to see which of the republican or democrat states prefer "stronger" beers, with a higher abv. So our last plot is the beer abv in function of the states top 5 beers abv mean. It displays the median of republican and democrat states too, where we observe a significant higher median (+2.0%) for the republican states. We decided to plot the median instead of the mean because democrat and republican states have extreme values.
     
 #### Part 4 : Deeper dive into the questions
 
-*Step 1 : Q3 - In order to start answering this question, it will be necessary to tokenize the reviews, and discard tokens related to common works. In addition, the tokenized treated review will be grouped by state, normalized (to account any difference in review Numbers by state) and displayed on an histogram, focusing first on the top 5 most democrat-tendent states and the top 5 most republican states. Depending on the result, some additional dive into the data (e.g by slicing into elections periods) will be required and the results compared with the other states. That plan is subject to change, depending on the results of the first step of analysis, if any unexpected result appear.
+*Step 1 : Q1*
+
+    Develop more on Question 1.
+    
+*Step 2 : Q2*
+
+    Develop more on Question 2.
+    
+*Step 3 : Q3*
+
+    In order to start answering this question, it will be necessary to tokenize the reviews, and discard tokens related to common works. In addition, the tokenized treated review will be grouped by state, normalized (to account any difference in review Numbers by state) and displayed on an histogram, focusing first on the top 5 most democrat-tendent states and the top 5 most republican states. Depending on the result, some additional dive into the data (e.g by slicing into elections periods) will be required and the results compared with the other states. That plan is subject to change, depending on the results of the first step of analysis, if any unexpected result appear.
 
 
-*Step 2 : Q4 In order to answer this question, we need to evaluate for each state the results of the smallest parties, from the election results dataset. Then, for different types of beers, we will look for potential correlation with these. Map libraries for python (e.g folium) can be used for better illustration and analysis of the results.
+*Step 4 : Q4*
+
+    In order to answer this question, we need to evaluate for each state the results of the smallest parties, from the election results dataset. Then, for different types of beers, we will look for potential correlation with these. Map libraries for python (e.g folium) can be used for better illustration and analysis of the results.
 
 
 #### Part 5: Datastory and website
 
-*Step 1 : Create and plan the datastory*
-*Step 2 : Create a website to show the datastory*
+*Step 1 : Analysis & Datastory*
 
-**This part is still to be detailed.**
+    Answer to Q5 and create the datastory.
+
+*Step 2 : Website*
+
+    Create a website to show the datastory.
+
+**This part is still to be detailed later.**
+
 
 #### Proposed timeline :
 15.11.2024 : Part 1 and 2
@@ -105,16 +122,19 @@ The data will first be filtered to only include election year's that match our b
 
 20.12.2024 : Deadline Milestone 3
 
-#### Organization within the team 🔴🔴
-Alberto : Step x.1 & x.2
 
-Daniel : Step 
+#### Organization within the team
+Alberto : Step 4.3 & 4.4
 
-Fabian : Step 
+Daniel : Step 4.1
 
-Samuel : Step 
+Fabian : Step 5.2
 
-Vincent : Step 
+Samuel : Step 4.2
+
+Vincent : Step 5.1
 
 
-### Questions for TA 
+#### Questions for TA 
+
+Do you think that we went too large on the number of questions we want to answer or is it fine like this?
