@@ -52,7 +52,7 @@ The data will first be filtered to only include election year's that match our b
 
 *Step 4: Exploring Each Dataset*
 
-    After examination, we removed unwanted columns that won’t be used and filled missing values for abv (the ones we could) (NaN for beer_abv  fill with average of abv of SAME style beers and precise that we are doing this asumption). 🔴🔴
+    After examination, we removed unwanted columns that won’t be used.
 
 #### Part 2 : Make one with the external Politics dataset (ALBERTO)
 *Step 1 : Prepare data*
@@ -72,38 +72,23 @@ The data will first be filtered to only include election year's that match our b
 
     Compare consumption type and political orientation of top 5 (Dem/Rep) for simplification
 
-*Step 2 : Beer style vs Politics (SAMUEL)*
+*Step 2 : Beer style vs Politics*
     The goal here was to enhance a trend in the beer styles depending on the political side of the states. The first result we had was a table showing the top 5 beer style by state. This table shows interesting result, like a strong attract to the beer style "Gueuze" in the democrat states, while the republican ones prefer more "Quadrupel" and "American Double/Imperial Stout" styles. We plotted the results of this table too, using a weighted count to add more weight to a top1 beer than to a top5 beer. Then, we plotted these results in a bar plot with the beer styles and their mean rating for republican states and for democrat states. The beer styles shown are the top 5 beer styles for each state. Because we don't see a clear difference between the democrat and republican states, we conclude that this plot hides the previous found trend because it doesn't distinguish the 1st from the 5th best beer style. The second plot shows the popularity i.e number of reviews, versus the beer styles and points out that the popularity in beer styles doesn't change that much across the country. The only visible difference between republican and democrat states is for the "American Double/Imperial IPA".
     
 
-*Step 3 : ABV vs Politics (SAMUEL)*
+*Step 3 : ABV vs Politics*
     After having analyzed the favorite beer styles for different states, we wanted to see which of the republican or democrat states prefer "stronger" beers, with a higher abv. So our last plot is the beer abv in function of the states top 5 beers abv mean. It displays the median of republican and democrat states too, where we observe a significant higher median (+2.0%) for the republican states. We decided to plot the median instead of the mean because democrat and republican states have extreme values.
-#### Part 4 : Deeper dive into the questions (🔴🔴TO DO ALL🔴🔴)
-*Step 1 : Q1 (Daniel)*
-
-
-
-*Step 2 : Q2 (Samuel)*
-
-
-*Step 3 : Q3 - In order to start answering this question, it will be necessary to tokenize the reviews, and discard tokens related to common works. In addition, the tokenized treated review will be grouped by state, normalized (to account any differnce in review Numbers by state) and displayed on an histogram, focusing first on the top 5 most democrat-tendent states and the top 5 most republican states. Depending on the result, some additional dive into the data (e.g by slicing into elections periods) will be required and the results compared with the other states. That plan is subject to change, depending on the results of the first step of analysis, if any unexpected result appear.
     
+#### Part 4 : Deeper dive into the questions
+
+*Step 1 : Q3 - In order to start answering this question, it will be necessary to tokenize the reviews, and discard tokens related to common works. In addition, the tokenized treated review will be grouped by state, normalized (to account any difference in review Numbers by state) and displayed on an histogram, focusing first on the top 5 most democrat-tendent states and the top 5 most republican states. Depending on the result, some additional dive into the data (e.g by slicing into elections periods) will be required and the results compared with the other states. That plan is subject to change, depending on the results of the first step of analysis, if any unexpected result appear.
 
 
-*Step 4 : Q4 In order to answer this question, we need to evaluate for each state the results of the smallest parties, from the election results dataset. Then, for different types of beers, we will look for potential correlation with these. Map libraries for python (e.g folium) can be used for better illustration and analysis of the results.
-
-🔴🔴Expliquer ce qu’on pourrait plot etc… en vrai pas obligé de tout mettre mais c’est cool si on met nos idées déjà.
-PRECISER que c'est SUBJECT TO CHANGES🔴🔴
+*Step 2 : Q4 In order to answer this question, we need to evaluate for each state the results of the smallest parties, from the election results dataset. Then, for different types of beers, we will look for potential correlation with these. Map libraries for python (e.g folium) can be used for better illustration and analysis of the results.
 
 
-#### Part 5 : Analyse the influence of politics on beer dynamics
-*Step 1 : Put everything together Q5*
-This will answer to Q5 after getting all the results from Part 4, we might do some final plots putting everything together.
-*Step 2 : Final analysis*
-Use final results for an analysis
+#### Part 5: Datastory and website
 
-
-#### Part 6: Datastory and website
 *Step 1 : Create and plan the datastory*
 *Step 2 : Create a website to show the datastory*
 
@@ -117,8 +102,6 @@ Use final results for an analysis
 08.12.2024 : Part 4 (Step 1 to 4)
 
 12.12.2024 : Part 5 (Step 1 & 2)
-
-18.12.2024 : Part 6 (Step 1 & 2)
 
 20.12.2024 : Deadline Milestone 3
 
@@ -135,16 +118,3 @@ Vincent : Step
 
 
 ### Questions for TA 
-
-
-
-README.md should contain:
-
-- Title
-- Abstract: A 150 word description of the project idea and goals. What’s the motivation behind your project? What story would you like to tell, and why?
-- Research Questions: A list of research questions you would like to address during the project.
-- Proposed additional datasets (if any): List the additional dataset(s) you want to use (if any), and some ideas on how you expect to get, manage, process, and enrich it/them. Show us that you’ve read the docs and some examples, and that you have a clear idea on what to expect. Discuss data size and format if relevant. It is your responsibility to check that what you propose is feasible.
-- Methods
-- Proposed timeline
-- Organization within the team: A list of internal milestones up until project Milestone P3.
-- Questions for TAs (optional): Add here any questions you have for us related to the proposed project.
