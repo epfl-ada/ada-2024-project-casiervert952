@@ -1,48 +1,5 @@
 # README - Milestone P2 - CasierVert952
 
-## 0. Initial configuration
-
-### 0.1 Package requiered to run the analysis
-
-- Pandas
-- Numpy
-- Matplotlib
-- Seaborn
-- csv
-- os
-- time
-- warnings
-- importlib
-
-### 0.2 Data
-
-To obtain the cleaned which are data requiered to run the ```analysis.ipynb``` file, it is needed to execute once the ```data_preprocessing.ipynb```. The latter require to have the two  ```ratings.txt``` files of the original datasets transformed in ```CSV```, as illustrated by the following directory structure :
-
-```
-README
-analysis.ipynb
-data_preprocessing.ipynb
-helpers.py
-data/
-├── BeerAdvocate/
-│   ├── beers.csv
-│   ├── breweries.csv
-│   ├── users.csv
-│   └── ratings.csv
-│
-└── RateBeer/
-    ├── beers.csv
-    ├── breweries.csv
-    ├── users.csv
-    └── ratings.csv
-```
-
-All files can be found in the GitHub Repo or in the original datasets, except for the ```ratings.csv``` files that are too heavy to be placed on GitHub. They can be downloaded here:
-- [BeerAdvocate](https://coursedingler.ch/data/BA/ratings.csv)
-- [RateBeer](https://coursedingler.ch/data/RB/ratings.csv)
-
-> *The generation of ```ratings.csv``` files for both datasets from ```.txt``` files is possible in ```data_preprocessing.ipynb``` but takes ~35 minutes on a high-performance computer.*
-
 ## 1. The project
 
 ### 1.1 Title 
@@ -83,19 +40,19 @@ The data will first be filtered to only include election year's that match our b
 #### Part 1 : Make one with the Beer data (FABIAN & VINCENT)
 *Step 1: Preparing the data*
 
-    Some datasets = txt files. Function to put it in CSV, …in helpers.py 
+    The available data were in different forms. The datasets on beer, brewery and users were in CSV, while ratings were in a multiple-lines TXT format. So we change them to regular CSV format.
 
-*Step 2: Building the the big and cleaned dataset*
+*Step 2: Building the the full and cleaned dataset*
 
-    For easier work with data  big merge of all datasets into one big. And then saved both into csv files  Efficient
+    For easier work with data later on, we did merge of all datasets into one Dataframe for each website. Then, we saved both into new CSV files called BA_cleaned.csv and RB_cleaned.csv.
 
 *Step 3 : Visualize and examining the data*
 
-    To be able to perform proper analysis and additionnal cleanups  We looked at the data from various angles
+    To be able to perform proper analysis and additionnal cleanups, we looked at the data from various angles, like the country representation, the distribution over time or the distribution over users.
 
 *Step 4: Exploring Each Dataset*
 
-    After examining  Removed columns that won’t be used and fill missing values (the ones we could) (NaN for beer_abv  fill with average of abv of SAME style beers and precise that we are doing this asumption).
+    After examination, we removed unwanted columns that won’t be used and filled missing values for abv (the ones we could) (NaN for beer_abv  fill with average of abv of SAME style beers and precise that we are doing this asumption). 🔴🔴
 
 #### Part 2 : Make one with the external Politics dataset (ALBERTO)
 *Step 1 : Prepare data*
@@ -135,8 +92,8 @@ The data will first be filtered to only include election year's that match our b
 
 *Step 4 : Q4 In order to answer this question, we need to evaluate for each state the results of the smallest parties, from the election results dataset. Then, for different types of beers, we will look for potential correlation with these. Map libraries for python (e.g folium) can be used for better illustration and analysis of the results.
 
-Expliquer ce qu’on pourrait plot etc… en vrai pas obligé de tout mettre mais c’est cool si on met nos idées déjà.
-PRECISER que c'est SUBJECT TO CHANGES
+🔴🔴Expliquer ce qu’on pourrait plot etc… en vrai pas obligé de tout mettre mais c’est cool si on met nos idées déjà.
+PRECISER que c'est SUBJECT TO CHANGES🔴🔴
 
 
 #### Part 5 : Analyse the influence of politics on beer dynamics
@@ -165,7 +122,7 @@ Use final results for an analysis
 
 20.12.2024 : Deadline Milestone 3
 
-#### Organization within the team
+#### Organization within the team 🔴🔴
 Alberto : Step x.1 & x.2
 
 Daniel : Step 

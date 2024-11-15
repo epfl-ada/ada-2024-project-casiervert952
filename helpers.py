@@ -199,6 +199,24 @@ def ploting_ratings_by_month(BA_ratings_by_month, RB_ratings_by_month, scale):
 	# show the plots
 	plt.show()
 
+##########################################
+###    Some helper lists for project   ###
+##########################################
+
+north_america_countries = [
+    "United States", "Canada"
+]
+
+european_countries = [
+    "Albania", "Andorra", "Armenia", "Austria", "Azerbaijan", "Belarus", "Belgium",
+    "Bosnia and Herzegovina", "Bulgaria", "Croatia", "Cyprus", "Czech Republic", "Denmark",
+    "Estonia", "Finland", "France", "Georgia", "Germany", "Greece", "Hungary", "Iceland",
+    "Ireland", "Italy", "Kazakhstan", "Kosovo", "Latvia", "Liechtenstein", "Lithuania",
+    "Luxembourg", "Malta", "Moldova", "Monaco", "Montenegro", "Netherlands", "North Macedonia",
+    "Norway", "Poland", "Portugal", "Romania", "Russia", "San Marino", "Serbia", "Slovakia",
+    "Slovenia", "Spain", "Sweden", "Switzerland", "Turkey", "Ukraine", "England",
+    "Vatican City"
+]
 
 ##########################################
 ### Some helper dictionary for project ###
