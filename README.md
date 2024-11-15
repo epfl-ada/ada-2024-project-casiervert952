@@ -67,7 +67,7 @@ See which states are more Democratic and which ones are more Republican.
 #### Part 3 : First look into the questions / Observe initial trends
 *Step 1 : Local vs National vs Foreign consumption*
 
-Compare consumption type and political orientation of top 10 (Dem/Rep) states.
+Compute US states' prefered consumption type.
 
 *Step 2 : Beer style vs Politics*
     
@@ -80,20 +80,16 @@ After having analyzed the favorite beer styles for different states, we wanted t
     
 #### Part 4 : Deeper dive into the questions
 
-*Step 1 : Q1*
+*Step 1 : Q1 & Q2*
 
-Develop more on Question 1.
+Plot graphs for Q1 to compare it with US Politics and for Q2 plot other beer characteristics with the political orientation of the 50 states.
     
-*Step 2 : Q2*
-
-Develop more on Question 2.
-    
-*Step 3 : Q3*
+*Step 2 : Q3*
 
 In order to start answering this question, it will be necessary to tokenize the reviews, and discard tokens related to common works. In addition, the tokenized treated review will be grouped by state, normalized (to account any difference in review Numbers by state) and displayed on an histogram, focusing first on the top 5 most democrat-tendent states and the top 5 most republican states. Depending on the result, some additional dive into the data (e.g by slicing into elections periods) will be required and the results compared with the other states. That plan is subject to change, depending on the results of the first step of analysis, if any unexpected result appear.
 
 
-*Step 4 : Q4*
+*Step 3 : Q4*
 
 In order to answer this question, we need to evaluate for each state the results of the smallest parties, from the election results dataset. Then, for different types of beers, we will look for potential correlation with these. Map libraries for python (e.g folium) can be used for better illustration and analysis of the results.
 
@@ -130,7 +126,7 @@ Daniel : Step 4.1
 
 Fabian : Step 5.2
 
-Samuel : Step 4.2
+Samuel : Step 4.1
 
 Vincent : Step 5.1
 
