@@ -14,7 +14,7 @@ To do this, we will compare two large datasets of beer reviews from two major be
 ### 1.3 Research Questions
 Thus, during this project we would like to answer these possible questions :
 
-*Q1* : To what extent does a state’s political orientation (Democrat or Republican) influence beer ratings by consumption type - whether the beer is from a local (in state), a national (US), or a foreign brewery?
+*Q1* : To what extent does a state’s political orientation (Democrat or Republican) influence beer ratings by consumption type - whether the beer is from a local (in state), a national (US), or a foreign brewery (International)?
 
 *Q2* : Are certain beer styles or are there typical beer characteristics that get rated more favorably in Republican or Democrat-leaning states? 
 
