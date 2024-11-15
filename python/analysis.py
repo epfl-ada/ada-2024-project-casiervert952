@@ -44,3 +44,38 @@ def compute_consumtion_type_states_preferances(BA_usa):
 	international_preference = state_consumption_stats[state_consumption_stats['consumption_type'] == 'International']
 	
 	return local_preference, national_preference, international_preference
+	
+
+"""
+Compute the top n republican/democrat states.
+
+Parameters:
+    n : Number of top stats in rep/dem lists.
+Returns:
+    The top n of each democrate and republican states.
+"""
+def top_n_rep_dem(n):
+    top5_republican = []
+    top5_democrat = []
+    dem_y_ = dem_year_.reset_index()
+    rep_y_ = rep_year_.reset_index()
+
+    dem_year = dem_year_score_df.copy().sort_values(by = 'Average', ascending = False)
+    dem_year = dem_year.drop(['DC']).reset_index() #DC is washington DC =/= state of washington
+    rep_year = rep_year_score_df.copy().sort_values(by = 'Average', ascending = False)
+    rep_year = rep_year.reset_index()
+
+    dem_year = dem_year[:n]
+    rep_year = rep_year[:n]
+
+    for st_po in dem_year['state_po'].values:
+
+        state = dem_y_[dem_y_['state_po'] == st_po]['state']
+        top5_democrat.append(state.values[0].title())
+        
+    for st_po in rep_year['state_po']:
+
+        state = rep_y_[rep_y_['state_po'] == st_po]['state']
+        top5_republican.append(state.values[0].title())
+    
+    return top5_democrat, top5_republican
