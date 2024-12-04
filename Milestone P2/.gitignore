@@ -1,0 +1,10 @@
+
+data/BeerAdvocate/ratings.csv
+data/BeerAdvocate/ratings.txt
+data/RateBeer/ratings.csv
+data/RateBeer/ratings.txt
+.ipynb_checkpoints/results-checkpoint.ipynb
+__pycache__/
+ADA_save/
+data/RateBeer/RB_cleaned.csv
+data/BeerAdvocate/BA_cleaned.csv
