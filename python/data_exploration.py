@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 import numpy as np
 import pandas as pd
+from collections import Counter
 
 #########################################
 ###  Function for data exploration    ###
@@ -77,4 +78,45 @@ def computing_NA_EU_countries(country_comparison, north_america_countries, europ
 	print ("\nOther continents (loss):\n   Total % of ratings (BA) :", round(BA_total_loss,1), '%')
 	RB_total_loss = 100 - na_RB_percentage - RB_european_percentage
 	print ("   Total % of ratings (RB) :", round(RB_total_loss,1), '%')
+
+
+"""
+Compute the #ratings by contry for high rated users
+
+Parameters:
+    n : The number of ratings a high rated users made
+Returns:
+    None, it just print the results
+"""
+def high_rated_users_by_country(n, RB_ratings_by_user, RB_cleaned):
+    # Keep only user with more than n ratings made
+    high_rated_users = RB_ratings_by_user[RB_ratings_by_user["#ratings"] > n]
+    
+    ratings_by_rated_users = RB_cleaned[RB_cleaned['user_id'].isin(high_rated_users['user_id'])]
+    RB_cleaned_with_ratings = ratings_by_rated_users.merge(high_rated_users[['user_id', '#ratings']], on='user_id', how='left')
+    
+    # Group by localisation user_country, count the #ratings and sort them
+    ratings_by_country = RB_cleaned_with_ratings.groupby("user_country")["#ratings"].count().reset_index()
+
+    ratings_by_country_sorted = ratings_by_country.sort_values(by="#ratings", ascending = False).reset_index().drop(columns=["index"])
+    
+    # Display the result
+    display(ratings_by_country_sorted)
 	
+
+def number_ratings_by_beer(BA_cleaned, RB_cleaned):
+
+	# Computing the #ratings by beer, and grouping them in bins of size 100
+	BA_ratings_by_beer = BA_cleaned.groupby('beer_id').size().reset_index(name='#ratings')
+	BA_ratings_bins = pd.cut(BA_ratings_by_beer['#ratings'], bins=np.arange(0, BA_ratings_by_beer['#ratings'].max() + 100, 100))
+	BA_ratings_bins = BA_ratings_bins.value_counts().sort_index()
+
+	RB_ratings_by_beer = RB_cleaned.groupby('beer_id').size().reset_index(name='#ratings')
+	RB_ratings_bins = pd.cut(RB_ratings_by_beer['#ratings'], bins=np.arange(0, RB_ratings_by_beer['#ratings'].max() + 100, 100))
+	RB_ratings_bins = RB_ratings_bins.value_counts().sort_index()
+
+	# Only show the minial value of the bins in the graph
+	BA_ratings_bins.index = [f'{int(bin.left)}' for bin in BA_ratings_bins.index]
+	RB_ratings_bins.index = [f'{int(bin.left)}' for bin in RB_ratings_bins.index]
+	
+	return BA_ratings_bins, RB_ratings_bins

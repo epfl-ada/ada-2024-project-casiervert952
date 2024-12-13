@@ -93,6 +93,47 @@ def ploting_user_ratings_distribution(BA_ratings_bins, RB_ratings_bins):
 	
 	# show the plot
 	plt.show()
+	
+	
+"""
+Plot the #ratings by beer
+
+Parameters:
+    BA_ratings_bins (pandas.Series): The #ratings by users data for BA.
+    RB_ratings_bins (pandas.Series): The #ratings by users data for RB.
+Returns:
+    None, it just show the plots
+"""
+def ploting_beer_ratings_distribution(BA_ratings_bins, RB_ratings_bins):
+	
+	plt.figure(figsize=(15, 6))
+
+	# add the data for BA in plot
+	BA_ratings_bins.plot(kind = 'bar', color = 'skyblue', edgecolor = 'black', alpha = 1, label = "BA Users", position = 1, width = 0.4)
+
+	# add the data for RB in plot
+	RB_ratings_bins.plot(kind = 'bar', color = 'salmon', edgecolor = 'black', alpha = 1, label = "RB Users", position = 0, width = 0.4)
+
+	# define labels, legend and titles
+	plt.title("Distribution of users by number of ratings", fontsize = 14)
+	plt.xlabel("# Ratings", fontsize = 12)
+	plt.ylabel("# Users", fontsize = 12)
+	plt.yscale("log")
+	plt.yticks([1, 10, 100, 1000, 10000, 100000], ['1', '10', '100', '1000', '10000', '100000'])  # Define y-ticks
+	plt.gca().yaxis.set_major_formatter(ticker.FuncFormatter(lambda x, pos: f'{int(x):,}'))  # Format y labels
+	plt.legend()
+
+	# rotate and define size for ticks
+	plt.xticks(rotation = 90)
+	plt.xticks(fontsize = 10)
+	plt.yticks(fontsize = 11)
+
+	# little change on placement
+	plt.tight_layout()
+	plt.xlim(-0.7)
+	
+	# show the plot
+	plt.show()
 
 """
 Plot the #ratings by months
