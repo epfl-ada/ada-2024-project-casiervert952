@@ -83,7 +83,7 @@ def top_n_rep_dem(n, dem_year_, dem_year_score_df, rep_year_, rep_year_score_df)
     return top_n_democrat, top_n_republican
 
 def beers_with_n_reviews(df_state,n,proportioned_n=False):
-    state = df_state['user_state'].nunique()
+    state = df_state['user_state'].unique()
     if proportioned_n:
         total_nb_review = len(df_state)
         nb_of_beers = df_state['beer_id'].nunique()
