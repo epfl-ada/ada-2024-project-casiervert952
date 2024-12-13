@@ -1,6 +1,7 @@
 # import the basic requiered libraries
 import os
 import csv
+import sys
 import time
 import warnings
 import importlib
@@ -17,6 +18,8 @@ RB_DATA_PATH = "data/RateBeer/"
 # import extrernal python fie
 sys.path.append('python')
 import helpers
-import plotting
-import data_exploration
-import analysis
+import section_1_data_loading
+import section_2_data_exploration
+import section_3_data_refinement
+import section_4_US_politics
+import section_5_analysis
