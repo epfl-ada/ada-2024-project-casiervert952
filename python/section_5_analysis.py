@@ -270,3 +270,29 @@ def create_df_for_abv(df_usa,topn_republican,topn_democrat,top_m_beer,filter=Tru
         pd_top_republican_abv[state + '_abv'] = top_state_abv['beer_abv'].values #add avg of beer_name
 
     return pd_top_republican_abv,pd_top_democrat_abv
+
+def create_df_combined_for_plot(df_republican,df_democrat,topn_republican,topn_democrat,list_rep_states,list_dem_states,str_case='Rating'):
+    if str_case not in ['Rating','Count','Beer abv']:
+        print('str_case must be in :"Rating","Count", "Beer abv"')
+        return None
+    # new long format to plot
+    republican_long = pd.melt(df_republican, id_vars = [df_republican.columns[0]], value_vars = topn_republican, var_name = 'State', value_name = 'Beer style')
+    democrat_long = pd.melt(df_democrat, id_vars = [df_democrat.columns[0]], value_vars = topn_democrat, var_name = 'State', value_name = 'Beer style')
+
+    # create a new column Count
+    republican_long[str_case] = pd.melt(df_republican, id_vars = [df_republican.columns[0]], value_vars = list_rep_states, var_name = 'State_rating', value_name = 'Count of rating')['Count of rating']
+    democrat_long[str_case] = pd.melt(df_democrat, id_vars = [df_democrat.columns[0]], value_vars = list_dem_states, var_name = 'State_rating', value_name = 'Count of rating')['Count of rating']
+
+    # add column 'state type'
+    republican_long['State type'] = 'Republican'
+    democrat_long['State type'] = 'Democrat'
+
+
+    # combine the dfs
+    df_combined = pd.concat([republican_long, democrat_long])
+    if str_case=='Rating' or str_case=='Count':
+        df_combined = df_combined.drop_duplicates(subset = ('State', 'Beer style'))
+    else:
+        df_combined = df_combined.rename(columns={'Beer style': 'Beer name'})
+
+    return df_combined
