@@ -94,3 +94,179 @@ def beers_with_n_reviews(df_state,n,proportioned_n=False):
     df_state = df_state[counts >= n]
 
     return df_state
+
+def create_df_weighted_counts(pd_top5_republican,pd_top5_democrat):
+    # add weight in counts, from top1 to top5 : weights = [5,4,3,2,1]
+    x = pd.Series(dtype='int')  # Initialize empty Series with dtype
+    for i in range(pd_top5_republican.shape[0]):
+        weight = 5 - i
+        counts = pd_top5_republican.drop(['Top 5'], axis=1).loc[i].value_counts() * weight
+        x = pd.concat([x, counts])
+
+    y = pd.Series(dtype='int')  # Initialize empty Series with dtype
+    for i in range(pd_top5_democrat.shape[0]):
+        weight = 5 - i
+        counts = pd_top5_democrat.drop(['Top 5'], axis=1).loc[i].value_counts() * weight
+        y = pd.concat([y, counts])
+
+    x = x.groupby(x.index).sum().sort_values(ascending=False)
+    y = y.groupby(y.index).sum().sort_values(ascending=False)
+
+    rep_top = pd.DataFrame({
+        'Beer styles': x.index,
+        'Weighted count': x.values,
+    })
+    dem_top = pd.DataFrame({
+        'Beer styles': y.index,
+        'Weighted count': y.values,
+    })
+
+    rep_top['State type'] = 'Republican'
+    dem_top['State type'] = 'Democrat'
+
+    df_combined = pd.concat([rep_top,dem_top]).sort_values(by = ['State type'],ascending=False)
+
+    return df_combined
+
+def all_styles_in_top(topn_republican,topn_democrat,pd_top5_republican,pd_top5_democrat):
+    styles_rep = []
+    styles_dem = []
+    for col in topn_republican:
+        styles_rep.append(list(pd_top5_republican[col].values))
+    styles_rep = [item for sous_liste in styles_rep for item in sous_liste]
+    #styles_rep = list(set(styles_rep))
+
+    for col in topn_democrat:
+        styles_dem.append(list(pd_top5_democrat[col].values))
+    styles_dem = [item for sous_liste in styles_dem for item in sous_liste]
+    #styles_dem = list(set(styles_dem))
+
+    # keep the values that need to be added
+    styles = list(set(styles_dem + styles_rep))
+
+    return styles
+
+
+def create_dfs_in_topn_on_metric(df_usa,topn_republican,topn_democrat,metric,top_m_beer,styles = False,filter=True,fct='rating'):
+    # Democrats States
+    if styles:
+        pd_topm_democrat = pd.DataFrame({
+            'Top '+ str(len(styles)+top_m_beer):np.arange(1,len(styles)+top_m_beer+1)
+        })
+    else:
+        pd_topm_democrat = pd.DataFrame({
+            'Top '+ str(top_m_beer):np.arange(1, top_m_beer+1)
+        })
+    
+
+    for state in topn_democrat:
+        BA_state = df_usa.copy()[df_usa['user_state'] == str(state)]
+
+        if filter:
+            # keep the beer if it has at least 10 ratings
+            BA_state = beers_with_n_reviews(BA_state,10,proportioned_n=False)
+        
+        #Take the topm beer styles depending on ratings for each state
+        topm_state = BA_state[['beer_name', 'beer_style', 'breweries_location', 'rating']].groupby(['beer_style']).agg({'rating': metric}).sort_values('rating', ascending = False)
+
+        
+
+        if styles:
+            # check that every style has ratings on it, else add it with None for the mean ratings
+            for style in styles:
+                if style in topm_state.index:
+                    pass
+                else:
+                    topm_state.loc[style] = None
+            topm_state = pd.concat([topm_state.head(top_m_beer), topm_state.loc[styles]])
+
+            #Insert top m beer styles + other styles in the df
+            pd_topm_democrat[state] = topm_state.index
+            
+            # add ratings of each beer_styles
+            pd_topm_democrat[state + '_'+fct] = topm_state['rating'].values 
+            
+
+        else:
+            #Insert top m beer styles in the df
+            pd_topm_democrat[state] = topm_state[:top_m_beer].index
+
+
+    # Republican States
+    if styles:
+        pd_topm_republican = pd.DataFrame({
+            'Top '+ str(len(styles)+top_m_beer):np.arange(1,len(styles)+top_m_beer+1)
+        })
+    else:
+        pd_topm_republican = pd.DataFrame({
+            'Top '+ str(top_m_beer):np.arange(1, top_m_beer+1)
+        })
+    
+
+    for state in topn_republican:
+        BA_state = df_usa.copy()[df_usa['user_state'] == str(state)]
+
+        if filter:
+            # keep the beer if it has at least 10 ratings
+            BA_state = beers_with_n_reviews(BA_state,10,proportioned_n=False)
+
+        #Take the topm beer styles depending on ratings for each state
+        topm_state = BA_state[['beer_name', 'beer_style', 'breweries_location', 'rating']].groupby(['beer_style']).agg({'rating': metric}).sort_values('rating', ascending = False)
+
+        if styles:
+            # check that every style has ratings on it, else add it with None for the mean ratings
+            for style in styles:
+                if style in topm_state.index:
+                    pass
+                else:
+                    topm_state.loc[style] = None
+            topm_state = pd.concat([topm_state.head(top_m_beer), topm_state.loc[styles]])
+
+            #Insert top m beer styles + other styles in the df
+            pd_topm_republican[state] = topm_state.index
+            # add ratings of each beer_styles
+            pd_topm_republican[state + '_'+fct] = topm_state['rating'].values 
+
+        else:
+            #Insert top m beer styles in the df
+            pd_topm_republican[state] = topm_state[:top_m_beer].index
+
+    return pd_topm_republican,pd_topm_democrat
+
+def create_df_for_abv(df_usa,topn_republican,topn_democrat,top_m_beer,filter=True):
+    
+    #Democrats States
+    pd_top_democrat_abv = pd.DataFrame({'Top '+ str(top_m_beer):np.arange(1, top_m_beer+1)})
+
+    for state in topn_democrat:
+        BA_state = df_usa.copy()[df_usa['user_state'] == str(state)]
+        if filter:
+            # keep the beer if it has at leat 10 ratings
+            counts = BA_state.groupby('beer_id')['rating'].transform('count')
+            BA_state = BA_state[counts >= 10]
+
+        #Drop rows if missing values on beer_abv
+        BA_state = BA_state.dropna(axis = 0,subset = ['beer_abv'])
+        top_state_abv = BA_state[['beer_name', 'beer_style', 'beer_abv', 'rating']].groupby(['beer_name']).agg({'rating': 'mean', 'beer_abv': 'first'}).sort_values('rating', ascending = False)[:top_m_beer]
+        #add beer names
+        pd_top_democrat_abv[state] = top_state_abv.index
+        pd_top_democrat_abv[state + '_abv'] = top_state_abv['beer_abv'].values #add avg of beer_name
+
+
+    #Republican States
+    pd_top_republican_abv = pd.DataFrame({'Top '+ str(top_m_beer):np.arange(1, top_m_beer+1)})
+    
+    for state in topn_republican:
+        BA_state = df_usa.copy()[df_usa['user_state'] == str(state)]
+        if filter:
+            # keep the beer if it has at leat 10 ratings
+            counts = BA_state.groupby('beer_id')['rating'].transform('count')
+            BA_state = BA_state[counts >= 10]
+        #Drop rows if missing values on beer_abv
+        BA_state = BA_state.dropna(axis = 0,subset = ['beer_abv'])
+        top_state_abv = BA_state[['beer_name', 'beer_style', 'beer_abv', 'rating']].groupby(['beer_name']).agg({'rating': 'mean','beer_abv': 'first'}).sort_values('rating', ascending = False)[:top_m_beer]
+        #add beer names
+        pd_top_republican_abv[state] = top_state_abv.index
+        pd_top_republican_abv[state + '_abv'] = top_state_abv['beer_abv'].values #add avg of beer_name
+
+    return pd_top_republican_abv,pd_top_democrat_abv
