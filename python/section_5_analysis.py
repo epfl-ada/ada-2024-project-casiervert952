@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 import numpy as np
 import pandas as pd
-
+from section_3_data_refinement import *
 #########################################
 ###    Function for data analysis     ###
 #########################################
@@ -147,7 +147,7 @@ def all_styles_in_top(topn_republican,topn_democrat,pd_top5_republican,pd_top5_d
     return styles
 
 
-def create_dfs_in_topn_on_metric(df_usa,topn_republican,topn_democrat,metric,top_m_beer,styles = False,filter=True,fct='rating'):
+def create_dfs_in_topn_on_metric(df_usa,topn_republican,topn_democrat,metric,top_m_beer,fct='rating',styles = False,filter=True,preference_score = False):
     # Democrats States
     if styles:
         pd_topm_democrat = pd.DataFrame({
@@ -162,12 +162,34 @@ def create_dfs_in_topn_on_metric(df_usa,topn_republican,topn_democrat,metric,top
     for state in topn_democrat:
         BA_state = df_usa.copy()[df_usa['user_state'] == str(state)]
 
+        
+        
+        if preference_score:
+            filter = False #no filter as we integrate the low nb of rating in the score
+
+            # compute the R, N for each beer
+            R = BA_state.groupby('beer_id')['rating'].mean()
+            N = BA_state.groupby('beer_id')['rating'].size()
+
+            grouped_rating_by_beer = BA_state[['rating', 'beer_id']].groupby('beer_id')
+            #Compute the max stability threshold
+            max_stability_threshold = calculate_max_stability_threshold_on_all_beers(grouped_rating_by_beer, 0.05, 10)
+            # compute the score for each beer
+            score = R * logarithmic(N,max_stability_threshold)
+
+            # adding the score to ratings dataframe
+            BA_state['preference_score'] = BA_state['beer_id'].map(score)
+        
         if filter:
             # keep the beer if it has at least 10 ratings
             BA_state = beers_with_n_reviews(BA_state,10,proportioned_n=False)
-        
-        #Take the topm beer styles depending on ratings for each state
-        topm_state = BA_state[['beer_name', 'beer_style', 'breweries_location', 'rating']].groupby(['beer_style']).agg({'rating': metric}).sort_values('rating', ascending = False)
+
+        if preference_score:
+            topm_state = BA_state[['beer_name', 'beer_style', 'breweries_location', 'preference_score']].groupby(['beer_style']).agg({'preference_score': metric}).sort_values('preference_score', ascending = False)
+            
+        else:
+            #Take the topm beer styles depending on ratings for each state
+            topm_state = BA_state[['beer_name', 'beer_style', 'breweries_location', 'rating']].groupby(['beer_style']).agg({'rating': metric}).sort_values('rating', ascending = False)
 
         
 
@@ -182,9 +204,12 @@ def create_dfs_in_topn_on_metric(df_usa,topn_republican,topn_democrat,metric,top
 
             #Insert top m beer styles + other styles in the df
             pd_topm_democrat[state] = topm_state.index
-            
+
             # add ratings of each beer_styles
-            pd_topm_democrat[state + '_'+fct] = topm_state['rating'].values 
+            if preference_score:
+                pd_topm_democrat[state + '_'+fct] = topm_state['preference_score'].values 
+            else:
+                pd_topm_democrat[state + '_'+fct] = topm_state['rating'].values 
             
 
         else:
@@ -206,12 +231,32 @@ def create_dfs_in_topn_on_metric(df_usa,topn_republican,topn_democrat,metric,top
     for state in topn_republican:
         BA_state = df_usa.copy()[df_usa['user_state'] == str(state)]
 
+        if preference_score:
+            filter = False #no filter as we integrate the low nb of rating in the score
+
+            # compute the R, N for each beer
+            R = BA_state.groupby('beer_id')['rating'].mean()
+            N = BA_state.groupby('beer_id')['rating'].size()
+
+            grouped_rating_by_beer = BA_state[['rating', 'beer_id']].groupby('beer_id')
+            #Compute the max stability threshold
+            max_stability_threshold = calculate_max_stability_threshold_on_all_beers(grouped_rating_by_beer, 0.05, 10)
+            # compute the score for each beer
+            score = R * logarithmic(N,max_stability_threshold)
+
+            # adding the score to ratings dataframe
+            BA_state['preference_score'] = BA_state['beer_id'].map(score)
+        
         if filter:
             # keep the beer if it has at least 10 ratings
             BA_state = beers_with_n_reviews(BA_state,10,proportioned_n=False)
 
-        #Take the topm beer styles depending on ratings for each state
-        topm_state = BA_state[['beer_name', 'beer_style', 'breweries_location', 'rating']].groupby(['beer_style']).agg({'rating': metric}).sort_values('rating', ascending = False)
+        if preference_score:
+            topm_state = BA_state[['beer_name', 'beer_style', 'breweries_location', 'preference_score']].groupby(['beer_style']).agg({'preference_score': metric}).sort_values('preference_score', ascending = False)
+            
+        else:
+            #Take the topm beer styles depending on ratings for each state
+            topm_state = BA_state[['beer_name', 'beer_style', 'breweries_location', 'rating']].groupby(['beer_style']).agg({'rating': metric}).sort_values('rating', ascending = False)
 
         if styles:
             # check that every style has ratings on it, else add it with None for the mean ratings
@@ -225,7 +270,10 @@ def create_dfs_in_topn_on_metric(df_usa,topn_republican,topn_democrat,metric,top
             #Insert top m beer styles + other styles in the df
             pd_topm_republican[state] = topm_state.index
             # add ratings of each beer_styles
-            pd_topm_republican[state + '_'+fct] = topm_state['rating'].values 
+            if preference_score:
+                pd_topm_republican[state + '_'+fct] = topm_state['preference_score'].values 
+            else:
+                pd_topm_republican[state + '_'+fct] = topm_state['rating'].values 
 
         else:
             #Insert top m beer styles in the df
@@ -272,7 +320,7 @@ def create_df_for_abv(df_usa,topn_republican,topn_democrat,top_m_beer,filter=Tru
     return pd_top_republican_abv,pd_top_democrat_abv
 
 def create_df_combined_for_plot(df_republican,df_democrat,topn_republican,topn_democrat,list_rep_states,list_dem_states,str_case='Rating'):
-    if str_case not in ['Rating','Count','Beer abv']:
+    if str_case not in ['Rating','Count','Beer abv','Pscore']:
         print('str_case must be in :"Rating","Count", "Beer abv"')
         return None
     # new long format to plot
@@ -290,9 +338,21 @@ def create_df_combined_for_plot(df_republican,df_democrat,topn_republican,topn_d
 
     # combine the dfs
     df_combined = pd.concat([republican_long, democrat_long])
-    if str_case=='Rating' or str_case=='Count':
+    if str_case=='Rating' or str_case=='Count' or str_case=='Pscore':
         df_combined = df_combined.drop_duplicates(subset = ('State', 'Beer style'))
     else:
         df_combined = df_combined.rename(columns={'Beer style': 'Beer name'})
 
     return df_combined
+
+def special_year_reviews_df(df,year):
+    """funtion that returns a sub df of the df with only reviews from the year(s) chosen"""
+    if type(year) != list:
+        raise ValueError('Error: year should be a list !')
+    
+    sub_df = pd.DataFrame({})
+    for y in year:
+        y = str(y)
+        sub_df = pd.concat((sub_df,df.loc[df['rating_date'].str.contains(y)].copy()),ignore_index=True)
+    
+    return sub_df
