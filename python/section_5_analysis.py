@@ -84,6 +84,7 @@ def top_n_rep_dem(n, dem_year_, dem_year_score_df, rep_year_, rep_year_score_df)
 
 def beers_with_n_reviews(df_state,n,proportioned_n=False):
     state = df_state['user_state'].unique()
+    old_n = n
     if proportioned_n:
         total_nb_review = len(df_state)
         nb_of_beers = df_state['beer_id'].nunique()
@@ -218,6 +219,7 @@ def create_dfs_in_topn_on_metric(df_usa,topn_republican,topn_democrat,metric,top
 
 
     # Republican States
+    #Create the correct length DataFrames
     if styles:
         pd_topm_republican = pd.DataFrame({
             'Top '+ str(len(styles)+top_m_beer):np.arange(1,len(styles)+top_m_beer+1)
@@ -228,9 +230,11 @@ def create_dfs_in_topn_on_metric(df_usa,topn_republican,topn_democrat,metric,top
         })
     
 
+    #Iterate through every state
     for state in topn_republican:
         BA_state = df_usa.copy()[df_usa['user_state'] == str(state)]
 
+        #if we want to compare on the Pscore, compute it first
         if preference_score:
             filter = False #no filter as we integrate the low nb of rating in the score
 
@@ -246,11 +250,13 @@ def create_dfs_in_topn_on_metric(df_usa,topn_republican,topn_democrat,metric,top
 
             # adding the score to ratings dataframe
             BA_state['preference_score'] = BA_state['beer_id'].map(score)
-        
+
+        #If we want to keep only sufficient rated beers
         if filter:
             # keep the beer if it has at least 10 ratings
             BA_state = beers_with_n_reviews(BA_state,10,proportioned_n=False)
 
+        #Create the top of the state, depending on
         if preference_score:
             topm_state = BA_state[['beer_name', 'beer_style', 'breweries_location', 'preference_score']].groupby(['beer_style']).agg({'preference_score': metric}).sort_values('preference_score', ascending = False)
             
@@ -321,7 +327,7 @@ def create_df_for_abv(df_usa,topn_republican,topn_democrat,top_m_beer,filter=Tru
 
 def create_df_combined_for_plot(df_republican,df_democrat,topn_republican,topn_democrat,list_rep_states,list_dem_states,str_case='Rating'):
     if str_case not in ['Rating','Count','Beer abv','Pscore']:
-        print('str_case must be in :"Rating","Count", "Beer abv"')
+        print('str_case must be in :"Rating","Count", "Beer abv","Pscore"')
         return None
     # new long format to plot
     republican_long = pd.melt(df_republican, id_vars = [df_republican.columns[0]], value_vars = topn_republican, var_name = 'State', value_name = 'Beer style')
