@@ -345,7 +345,7 @@ def create_df_combined_for_plot(df_republican,df_democrat,topn_republican,topn_d
 
     return df_combined
 
-def special_year_reviews_df(df,year):
+def special_year_df(df,year):
     """funtion that returns a sub df of the df with only reviews from the year(s) chosen"""
     if type(year) != list:
         raise ValueError('Error: year should be a list !')
