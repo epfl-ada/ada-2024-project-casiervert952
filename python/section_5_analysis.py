@@ -150,6 +150,7 @@ def all_styles_in_top(topn_republican,topn_democrat,pd_top5_republican,pd_top5_d
 
 def create_dfs_in_topn_on_metric(df_usa,topn_republican,topn_democrat,metric,top_m_beer,fct='rating',styles = False,filter=True,preference_score = False):
     # Democrats States
+    #Create the correct length DataFrames
     if styles:
         pd_topm_democrat = pd.DataFrame({
             'Top '+ str(len(styles)+top_m_beer):np.arange(1,len(styles)+top_m_beer+1)
@@ -164,7 +165,7 @@ def create_dfs_in_topn_on_metric(df_usa,topn_republican,topn_democrat,metric,top
         BA_state = df_usa.copy()[df_usa['user_state'] == str(state)]
 
         
-        
+        #if we want to compare on the Pscore, compute it first
         if preference_score:
             filter = False #no filter as we integrate the low nb of rating in the score
 
@@ -180,11 +181,13 @@ def create_dfs_in_topn_on_metric(df_usa,topn_republican,topn_democrat,metric,top
 
             # adding the score to ratings dataframe
             BA_state['preference_score'] = BA_state['beer_id'].map(score)
-        
+
+        #If we want to keep only sufficiently rated beers
         if filter:
             # keep the beer if it has at least 10 ratings
             BA_state = beers_with_n_reviews(BA_state,10,proportioned_n=False)
 
+        #Create the top of the state, depending on the value we compare
         if preference_score:
             topm_state = BA_state[['beer_name', 'beer_style', 'breweries_location', 'preference_score']].groupby(['beer_style']).agg({'preference_score': metric}).sort_values('preference_score', ascending = False)
             
@@ -201,9 +204,9 @@ def create_dfs_in_topn_on_metric(df_usa,topn_republican,topn_democrat,metric,top
                     pass
                 else:
                     topm_state.loc[style] = None
-            topm_state = pd.concat([topm_state.head(top_m_beer), topm_state.loc[styles]])
+            topm_state = pd.concat([topm_state.head(top_m_beer), topm_state.loc[styles]])#(has duplicates that will be removed)
 
-            #Insert top m beer styles + other styles in the df
+            #Insert top m beer styles + other styles in the df 
             pd_topm_democrat[state] = topm_state.index
 
             # add ratings of each beer_styles
@@ -251,12 +254,12 @@ def create_dfs_in_topn_on_metric(df_usa,topn_republican,topn_democrat,metric,top
             # adding the score to ratings dataframe
             BA_state['preference_score'] = BA_state['beer_id'].map(score)
 
-        #If we want to keep only sufficient rated beers
+        #If we want to keep only sufficiently rated beers
         if filter:
             # keep the beer if it has at least 10 ratings
             BA_state = beers_with_n_reviews(BA_state,10,proportioned_n=False)
 
-        #Create the top of the state, depending on
+        #Create the top of the state, depending on the value we compare
         if preference_score:
             topm_state = BA_state[['beer_name', 'beer_style', 'breweries_location', 'preference_score']].groupby(['beer_style']).agg({'preference_score': metric}).sort_values('preference_score', ascending = False)
             
@@ -271,7 +274,7 @@ def create_dfs_in_topn_on_metric(df_usa,topn_republican,topn_democrat,metric,top
                     pass
                 else:
                     topm_state.loc[style] = None
-            topm_state = pd.concat([topm_state.head(top_m_beer), topm_state.loc[styles]])
+            topm_state = pd.concat([topm_state.head(top_m_beer), topm_state.loc[styles]])#(has duplicates that will be removed)
 
             #Insert top m beer styles + other styles in the df
             pd_topm_republican[state] = topm_state.index
